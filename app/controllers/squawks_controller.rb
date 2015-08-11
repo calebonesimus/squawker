@@ -26,10 +26,10 @@ class SquawksController < ApplicationController
   # squawk /squawks.json
   def create
     @squawk = Squawk.new(squawk_params)
-    current_user.squawks << @squawk
+    # current_user.squawks << @squawk
 
     respond_to do |format|
-      if @squawk.save
+      if current_user.squawks << @squawk
         format.html { redirect_to :back, notice: 'squawk was successfully created.' }
         format.json { render :show, status: :created, location: @squawk }
       else

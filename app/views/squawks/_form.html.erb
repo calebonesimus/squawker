@@ -1,11 +1,18 @@
 <%= bootstrap_form_for(@new_squawk) do |f| %>
 
   <div class="field">
-    <%= f.text_area :body, :label => "Squawk" %>
+    <%= f.text_area :body,
+                    :label => "Squawk",
+                    :id => "squawk-body-field",
+                    :onkeyup => "if (this.value.length > 170) {
+                                  document.getElementById('submit-squawk').disabled = true;
+                                } else {
+                                  document.getElementById('submit-squawk').disabled = false;
+                                }" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Make Squawk!" %>
+    <%= f.submit "Make Squawk!", class: "btn btn-default", id: "submit-squawk" %>
   </div>
 
 <% end %>

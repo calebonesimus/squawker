@@ -1,5 +1,5 @@
 <div class="row text-center">
-  <img src="<%= squawk.user.avatar %>" onerror="this.src='<%=image_path("image1.jpg")%>';" alt="Missing Image">
+  <img src="<%= @user.try(:avatar) %>" onerror="this.src='<%=image_path("image1.jpg")%>';" alt="Missing Image">
 </div>
 
 <div class="row text-center">
@@ -13,10 +13,10 @@
     <p>Squawks<br><%= @user.squawks.count %></p>
   </div>
   <div class="col-xs-4 text-center">
-    <p>Following<br><%= @user.follows.count %></p>
+    <p>Following<br><%= @user.follow_count %></p>
   </div>
   <div class="col-xs-4 text-center">
-    <p>Followers<br><%= @user.followers.count %></p>
+    <p>Followers<br><%= @user.followers_count %></p>
   </div>
 </div>
 

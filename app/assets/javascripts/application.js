@@ -18,10 +18,21 @@
 $(document).ready(function() {
 
   // New squawk form
-
-  $('.new-squawk').click(function() {
+  function toggleSquawk() {
     $('.new-squawk-form').toggle();
     $('.dark-screen').toggle();
-  });
+    $('body').toggleClass('no-scroll');
+  };
+
+  $('.new-squawk').click(toggleSquawk);
+  $('.dark-screen').click(toggleSquawk);
+
+  function disableSquawkButton() {
+    if ($('#squawk-body-field').value.length > 170) {
+      $('#submit-squawk').disabled = true;
+    };
+  };
+
+
 
 });
