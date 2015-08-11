@@ -8,7 +8,7 @@
         <%= link_to squawk.user.first_name, profile_view_path(username: squawk.user.username) %>
         <span class="light-text">@<%= squawk.user.username %></span>
       </span>
-      <h4><%= raw(squawk.body) %></h4>
+      <h4><%= simple_format(squawk.body) %></h4>
       <%= time_ago_in_words(squawk.created_at) %>
     </div>
   </div>
