@@ -1,0 +1,5 @@
+$(document).ready(function() {
+  $('#new_squawk_modal').modal('hide');
+  $(".view_squawks").prepend("<%=j render partial: 'squawk', locals: { squawk: @squawk } %>");
+
+});

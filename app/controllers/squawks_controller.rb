@@ -15,7 +15,7 @@ class SquawksController < ApplicationController
 
   # GET /squawks/new
   def new
-    render partial: 'squawk_modal'
+    @new_squawk = Squawk.new
   end
 
   # GET /squawks/1/edit
@@ -26,15 +26,16 @@ class SquawksController < ApplicationController
   # squawk /squawks.json
   def create
     @squawk = Squawk.new(squawk_params)
-    # current_user.squawks << @squawk
 
     respond_to do |format|
       if current_user.squawks << @squawk
-        format.html { redirect_to :back, notice: 'squawk was successfully created.' }
+        # format.html { redirect_to :back, notice: 'squawk was successfully created.' }
         format.json { render :show, status: :created, location: @squawk }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @squawk.errors, status: :unprocessable_entity }
+        # format.js {}
       end
     end
   end
