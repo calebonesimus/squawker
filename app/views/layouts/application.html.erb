@@ -41,15 +41,13 @@
 
     <!-- Shows errors when one is present -->
     <div class="container">
-      <div class="text-center col-xs-3 col-xs-offset-9">
-        <% if flash[:error] %>
-          <p class='error'><%=h flash[:error] %></p>
-        <% end %>
-        <% if flash[:notice] %>
-          <p class='notice'><%=h flash[:notice] %></p>
-        <% end %>
+      <div class="alert alert-dismissable" id="ajax-flashes">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       </div>
-      
+    </div>
+
+    <div class="container">
+
       <button action="squawks/new" type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_squawk_modal">
         New Squawk
       </button>
