@@ -9,35 +9,13 @@
 <body>
 
   <div class="wrapper">
-    <nav role="navigation" class="navbar navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <i class="fa fa-twitter-square fa-3x pull-left"></i>
-            <%= link_to "Squawker", root_path, class: "navbar-brand" %>
-        </div>
+    <div id="nav-container">
+      <%= render partial: 'squawks/nav' %>
+    </div>
 
-        <div id="navbar">
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <!-- Only shows profile when a username has been saved to the db. -->
-                <% if current_user.username? %>
-                  <li><%= link_to "Profile", profile_view_path(username: current_user.username), :class => 'navbar-link' %></li>
-                <% end %>
-              <li><%= link_to "Logout", destroy_user_session_path, :class => 'navbar-link'  %></li>
-            <% else %>
-              <li><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link' %></li>
-            <% end %>
-            <%= form_tag search_path, :method => :get, class: "navbar-form navbar-left" do %>
-                <%= text_field_tag :search_item, params[:search_item], placeholder: 'Search...', :autocomplete => :off, class: "form-control"  %>
-                <%= submit_tag "Search", class: "btn btn-primary" %>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hidden form for new squawks -->
+    <!-- Hidden forms -->
     <%= render partial: 'squawks/form', layout: 'squawks/squawk_modal' %>
+    <%= render partial: 'devise/sessions/new', layout: 'squawks/login_modal' %>
 
     <!-- Shows errors when one is present -->
     <div class="container">
@@ -47,12 +25,13 @@
     </div>
 
     <div class="container">
-
+    <% if current_user %>
       <button action="squawks/new" type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_squawk_modal">
         New Squawk
       </button>
+    <% end %>
 
-      <%= yield %>
+    <%= yield %>
 
     </div>
 

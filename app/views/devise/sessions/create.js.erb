@@ -1,0 +1,12 @@
+$(document).ready(function() {
+  // Close modal
+  $('#login_modal').modal('hide');
+
+  // Flash
+  $('#ajax-flashes').html("Sign in successful..")
+  $('#ajax-flashes').addClass("alert-success")
+  $('#ajax-flashes').fadeIn().delay(3000).fadeOut(1000);
+
+  $('#nav-container').html("<%=j render partial: 'squawks/nav' %>")
+
+});

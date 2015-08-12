@@ -1,7 +1,7 @@
 <div class="col-xs-6 col-xs-offset-3">
   <h2>Log in</h2>
 
-  <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), :remote => true) do |f| %>
     <div class="field">
       <%= f.email_field :email, autofocus: true, :placeholder => "Email" %>
     </div>
@@ -14,7 +14,7 @@
       <div class="field">
         <%= f.check_box :remember_me %>
       </div>
-    <% end -%>
+    <% end %>
 
     <div class="actions">
       <%= f.submit "Sign in" %>
