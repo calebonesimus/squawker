@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   }
 
   root 'squawks#index'
-
-  devise_scope :user do
-    delete '/signout', to: 'devise/sessions#destroy', as: :signout
-  end
+  
+  # devise_scope :user do
+  #   delete '/signout', to: 'devise/sessions#destroy', as: :signout
+  # end
 
   #route for sign-up wizard
   resources :after_signup
