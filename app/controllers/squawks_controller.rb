@@ -15,7 +15,7 @@ class SquawksController < ApplicationController
 
   # GET /squawks/new
   def new
-    @squawk = Squawk.new
+    render partial: 'squawk_modal'
   end
 
   # GET /squawks/1/edit

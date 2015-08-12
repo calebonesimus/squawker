@@ -1,40 +1,36 @@
-<div class="row text-center">
-  <img src="<%= @user.try(:avatar) %>" onerror="this.src='<%=image_path("image1.jpg")%>';" alt="Missing Image">
-</div>
+  <div class="row text-center">
+    <img src="<%= @user.try(:avatar) %>" onerror="this.src='<%=image_path("image1.jpg")%>';" alt="Missing Image">
+  </div>
 
-<div class="row text-center">
-    <p><%= @user.first_name %><p>
-    <p><%= @user.username %><p>
-    <p><%= @user.bio %><p>
-</div>
+  <div class="row text-center">
+      <p><%= @user.first_name %><p>
+      <p><%= @user.username %><p>
+      <p><%= @user.bio %><p>
+  </div>
 
-<div class="row text-center">
-  <div class="col-xs-4 text-center">
-    <p>Squawks<br><%= @user.squawks.count %></p>
+  <div class="row text-center">
+    <div class="col-xs-4 text-center">
+      <p>Squawks<br><%= @user.squawks.count %></p>
+    </div>
+    <div class="col-xs-4 text-center">
+      <p>Following<br><%= @user.follow_count %></p>
+    </div>
+    <div class="col-xs-4 text-center">
+      <p>Followers<br><%= @user.followers_count %></p>
+    </div>
   </div>
-  <div class="col-xs-4 text-center">
-    <p>Following<br><%= @user.follow_count %></p>
-  </div>
-  <div class="col-xs-4 text-center">
-    <p>Followers<br><%= @user.followers_count %></p>
-  </div>
-</div>
 
-<div class="row text-center">
-  <div class="col-lg-4 col-lg-offset-2">
-    <!-- Following and unfollowing -->
-    <% if current_user.following?(@user) %>
-      <%= button_to "Unfollow", unfollow_path, :class => "btn btn-primary btn-sm", :method => :post %>
-    <% else %>
-      <%= button_to "Follow", follow_path, :class => "btn btn-primary btn-sm", :method => :post %>
-    <% end %>
+  <div class="row text-center">
+    <div class="col-lg-4 col-lg-offset-2 follow-toggle" id="user-<%= @user.id %>">
+      <!-- Following and unfollowing -->
+      <%= button_to "Follow", follow_path, :class => "btn btn-primary btn-sm follow-button", :method => :post, :remote => true %>
+    </div>
+    <div class="col-lg-4">
+      <!-- Blocking and unblocking -->
+      <% if current_user.blocks.include?(@user) %>
+        <%= button_to "Unblock", unblock_path, :class => "btn btn-primary btn-sm", :method => :post %>
+      <% else %>
+        <%= button_to "Block", block_path, :class => "btn btn-primary btn-sm", :method => :post %>
+      <% end %>
+    </div>
   </div>
-  <div class="col-lg-4">
-    <!-- Blocking and unblocking -->
-    <% if current_user.blocks.include?(@user) %>
-      <%= button_to "Unblock", unblock_path, :class => "btn btn-primary btn-sm", :method => :post %>
-    <% else %>
-      <%= button_to "Block", block_path, :class => "btn btn-primary btn-sm", :method => :post %>
-    <% end %>
-  </div>
-</div>

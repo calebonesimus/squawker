@@ -19,8 +19,12 @@
         <div id="navbar">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to "New Squawk", "#", class: "btn new-squawk" %></li>
-
+              <li>
+                <button action="squawks/new" type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_squawk_modal">
+                  New Squawk
+                </button>
+                <%= link_to "New Squawk", new_squawk_path %>
+              </li>
               <!-- Only shows profile when a username has been saved to the db. -->
                 <% if current_user.username? %>
                   <li><%= link_to "Profile", profile_view_path(username: current_user.username), :class => 'navbar-link' %></li>
@@ -39,15 +43,15 @@
     </nav>
 
     <!-- Hidden form for new squawks -->
-    <div class="container">
+    <!-- <div class="container">
       <div class="col-xs-6 col-xs-offset-3">
         <div class="new-squawk-form">
           <%= render partial: '/squawks/form' %>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="dark-screen"></div>
+    <!-- <div class="dark-screen"></div> -->
 
     <!-- Shows errors when one is present -->
     <div class="container">
