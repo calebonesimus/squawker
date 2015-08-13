@@ -4,7 +4,11 @@ class SquawksController < ApplicationController
   # GET /squawks
   # GET /squawks.json
   def index
-    @squawks = Squawk.timeline(current_user).page(params[:page]).per(20)
+    if current_user
+      @squawks = Squawk.timeline(current_user).page(params[:page]).per(20)
+    else
+      @squawks = Squawk.all.page(params[:page]).per(20)
+    end
     @who_to_follow = User.all.sample(3)
   end
 
@@ -15,7 +19,7 @@ class SquawksController < ApplicationController
 
   # GET /squawks/new
   def new
-    @squawk = Squawk.new
+    @new_squawk = Squawk.new
   end
 
   # GET /squawks/1/edit
@@ -26,15 +30,16 @@ class SquawksController < ApplicationController
   # squawk /squawks.json
   def create
     @squawk = Squawk.new(squawk_params)
-    # current_user.squawks << @squawk
 
     respond_to do |format|
       if current_user.squawks << @squawk
-        format.html { redirect_to :back, notice: 'squawk was successfully created.' }
+        # format.html { redirect_to :back, notice: 'squawk was successfully created.' }
         format.json { render :show, status: :created, location: @squawk }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @squawk.errors, status: :unprocessable_entity }
+        # format.js {}
       end
     end
   end

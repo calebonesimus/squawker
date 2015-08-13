@@ -1,0 +1,14 @@
+$(document).ready(function() {
+  // Close modal
+  $('#new_squawk_modal').modal('hide');
+
+  // Add new squawk to timeline
+  $('.view_squawks').prepend("<%=j render partial: 'squawk', locals: { squawk: @squawk } %>");
+
+  // Flash
+  $('#ajax-flashes').html("You just squawked.")
+  $('#ajax-flashes').addClass("alert-success")
+  // $('#ajax-flashes').append("You just squawked.")
+  $('#ajax-flashes').fadeIn().delay(3000).fadeOut(1000);
+
+});

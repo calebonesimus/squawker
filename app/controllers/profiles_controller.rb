@@ -7,19 +7,25 @@ class ProfilesController < ApplicationController
 
   def follow
     if @user.cannot_follow?(@user)
-      flash[:error] = "You cannot follow this person."
-      redirect_to :back
+      respond_to do |format|
+        format.html { redirect_to :back, :notice => "You can't follow this user. Sorry."}
+      end
     else
       current_user.follow(@user)
-      flash[:notice] = "You are now following #{@user.username}."
-      redirect_to :back
+      # flash[:notice] = "You are now following #{@user.username}."
+      respond_to do |format|
+        format.js {}
+      end
     end
   end
 
   def unfollow
     current_user.stop_following(@user)
-    flash[:notice] = "You are no longer following #{@user.username}."
-    redirect_to :back
+    # flash[:notice] = "You are no longer following #{@user.username}."
+    respond_to do |format|
+      # format.html { redirect_to :back }
+      format.js {}
+    end
   end
 
   def block

@@ -20,18 +20,11 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  authenticated :user do
-    devise_scope :user do
-      root to: "squawks#index", as: :user_timeline
-      delete '/signout', to: 'devise/sessions#destroy', as: :signout
-    end
-  end
-
-  unauthenticated do
-    devise_scope :user do
-      root to: "static_pages#home", to: "devise/sessions#new"
-    end
-  end
+  root 'squawks#index'
+  
+  # devise_scope :user do
+  #   delete '/signout', to: 'devise/sessions#destroy', as: :signout
+  # end
 
   #route for sign-up wizard
   resources :after_signup
